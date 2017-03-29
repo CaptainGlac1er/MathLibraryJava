@@ -45,11 +45,9 @@ public class Vector {
                 int shift = 0;
                 for(int j = 0; j < vectors.length + 1; j++){
                     if(j == i) shift = 1;
-                    else {
-                        for (int k = 0; k < vectors.length; k++) {
+                    else
+                        for (int k = 0; k < vectors.length; k++)
                             subArray[j - shift][k] = vectors[k].getUnitVectors()[j];
-                        }
-                    }
                 }
                 output[i] = Matrix.determinant(subArray) * ((shouldNeg)?-1:1);
                 shouldNeg = !shouldNeg;
