@@ -3,15 +3,15 @@ package gwc.mathlibrary;
 /**
  * Created by George on 3/28/2017.
  */
-public class vector {
+public class Vector {
     protected double[] unitVectors;
-    public vector(double i, double j, double k){
+    public Vector(double i, double j, double k){
         unitVectors = new double[3];
         unitVectors[0] = i;
         unitVectors[1] = j;
         unitVectors[2] = k;
     }
-    public vector(double[] unitVectors){
+    public Vector(double[] unitVectors){
         this.unitVectors = unitVectors;
     }
     public double[] getUnitVectors(){
@@ -20,13 +20,22 @@ public class vector {
     public int getDimensions(){
         return unitVectors.length;
     }
+    public double getMagnitude(){
+        double add = 0;
+        for(double uv : unitVectors)
+            add += Math.pow(uv,2);
+        return Math.sqrt(add);
+    }
     public String toString(){
         String output = "";
         for(double d : unitVectors)
             output += d + " ";
         return output;
     }
-    public static vector crossProduct(vector[] vectors){
+    public Vector crossProduct(Vector secondVector){
+        return crossProduct(new Vector[]{this, secondVector});
+    }
+    private Vector crossProduct(Vector[] vectors){
         double[] output;
         if(vectors.length > 1){
             output = new double[vectors[0].getDimensions()];
@@ -42,10 +51,10 @@ public class vector {
                         }
                     }
                 }
-                output[i] = matrix.determinant(subArray) * ((shouldNeg)?-1:1);
+                output[i] = Matrix.determinant(subArray) * ((shouldNeg)?-1:1);
                 shouldNeg = !shouldNeg;
             }
-            return new vector(output);
+            return new Vector(output);
         }else if(vectors.length == 1) {
             return vectors[0];
         }

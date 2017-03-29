@@ -3,7 +3,7 @@ package gwc.mathlibrary;
 /**
  * Created by George on 3/28/2017.
  */
-public class matrix {
+public class Matrix {
     public static double determinant(double[][] array){
         double output = 0;
         if(array.length == 2){
