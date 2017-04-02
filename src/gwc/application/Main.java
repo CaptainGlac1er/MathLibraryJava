@@ -8,13 +8,13 @@ public class Main {
         //testVectorProduct();
     }
     public static void testMatrixMultiplication(){
-		double[][] test = new double[1][5];
+		double[][] test = new double[3][3];
 		for(int x = 0; x < test.length; x++){
 			for(int y = 0; y < test[x].length; y++){
 				test[x][y] = (Math.random() * 10) - 5;
 			}
 		}
-		double[][] test1 = new double[5][2];
+		double[][] test1 = new double[3][3];
 		for(int x = 0; x < test1.length; x++){
 			for(int y = 0; y < test1[x].length; y++){
 				test1[x][y] = (Math.random() * 10) - 5;
@@ -28,7 +28,8 @@ public class Main {
 		matrix2.printMatrix();
 
 		System.out.println("\r\n\r\n");
-		matrix1.multiply(matrix2).printMatrix();
+		matrix1.add(matrix2).printMatrix();
+        //matrix1.multiply(matrix2).printMatrix();
 	}
     public static void testVectorProduct(){
 		int cnt = 1;

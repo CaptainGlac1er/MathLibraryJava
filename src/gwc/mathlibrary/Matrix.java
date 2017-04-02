@@ -8,7 +8,7 @@ public class Matrix {
     public Matrix(double[][] array){
         this.array = array;
     }
-    public Matrix(int rows, int columns){
+    public Matrix(int columns, int rows){
         array = new double[rows][columns];
     }
     public double getDeterminant(){
@@ -63,7 +63,7 @@ public class Matrix {
         int m = getColumnCount();
         if(m != second.getRowCount())
             return null;
-        Matrix newMatrix = new Matrix(getRowCount(), second.getColumnCount());
+        Matrix newMatrix = new Matrix( second.getColumnCount(), getRowCount());
         for(int y = 0; y < newMatrix.getRowCount(); y++){
             for(int x = 0; x < newMatrix.getColumnCount(); x++){
                 double cellValue = 0;
@@ -83,5 +83,27 @@ public class Matrix {
             }
             System.out.println();
         }
+    }
+    public Matrix add(Matrix second){
+        if(getColumnCount() != second.getColumnCount() || getRowCount() != second.getRowCount())
+            return null;
+        Matrix newMatrix = new Matrix(getColumnCount(),getRowCount());
+        for(int y = 0; y < newMatrix.getRowCount(); y++){
+            for(int x = 0; x < newMatrix.getColumnCount(); x++){
+                newMatrix.setValue(x, y, getValue(x,y) + second.getValue(x,y));
+            }
+        }
+        return newMatrix;
+    }
+    public Matrix subtract(Matrix second){
+        if(getColumnCount() != second.getColumnCount() || getRowCount() != second.getRowCount())
+            return null;
+        Matrix newMatrix = new Matrix(getColumnCount(),getRowCount());
+        for(int y = 0; y < newMatrix.getRowCount(); y++){
+            for(int x = 0; x < newMatrix.getColumnCount(); x++){
+                newMatrix.setValue(x, y, getValue(x,y) - second.getValue(x,y));
+            }
+        }
+        return newMatrix;
     }
 }
